@@ -1,0 +1,23 @@
+﻿@model StudentTeacherSubject.ViewModel.AssignTeachersViewModel
+
+
+
+<h2>Assign Teachers to Class</h2>
+
+<form asp-action="AssignTeachers" method="post">
+    <input type="hidden" name="id" value="@Model.Class.Id" />
+
+    <div class="form-group">
+        <label for="Teachers">Available Teachers</label>
+        <select id="Teachers" name="teacherIds" multiple="multiple" class="form-control">
+            @foreach (var teacher in Model.AvailableTeachers)
+            {
+                <option value="@teacher.Id">@teacher.Name </option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Assign</button>
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+</form>

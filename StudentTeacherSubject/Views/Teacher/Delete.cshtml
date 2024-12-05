@@ -1,0 +1,50 @@
+﻿@model StudentTeacherSubject.Models.Teacher
+
+@{
+    ViewData["Title"] = "Delete Teacher";
+}
+
+<h1>Delete Teacher</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Teacher</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            Age
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Age
+        </dd>
+        <dt class="col-sm-2">
+            Sex
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Sex
+        </dd>
+        <dt class="col-sm-2">
+            Image
+        </dt>
+        <dd class="col-sm-10">
+            @if (!string.IsNullOrEmpty(Model.ImagePath))
+            {
+                <img src="~/images/teachers/@Model.ImagePath" alt="@Model.Name" style="width:100px;" />
+            }
+        </dd>
+    </dl>
+</div>
+<br />
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

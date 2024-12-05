@@ -1,0 +1,22 @@
+﻿@model StudentTeacherSubject.ViewModel.AssignSubjectsViewModel
+
+<h2>Assign Subjects to @Model.Teacher.Name</h2>
+
+<form asp-action="AssignSubjects" method="post">
+    <input type="hidden" asp-for="Teacher.Id" />
+
+    <div>
+        <label>Subjects:</label>
+        @foreach (var subject in Model.Subjects)
+        {
+            <div>
+                <input type="checkbox" name="AssignedSubjectIds" value="@subject.Id"
+                @(Model.AssignedSubjectIds.Contains(subject.Id) ? "checked" : "") />
+                @subject.Name (@subject.Class)
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</form>

@@ -1,0 +1,19 @@
+﻿@model StudentTeacherSubject.ViewModel.AddSubjectViewModel
+
+@using (Html.BeginForm("AddSubjectToStudent", "Student", FormMethod.Post))
+{
+    <input type="hidden" name="studentId" value="@Model.StudentId" />
+
+    <div class="form-group">
+        <label for="SubjectId">Select Subject</label>
+        <select id="SubjectId" name="subjectId" class="form-control">
+            @foreach (var subject in Model.Subjects)
+            {
+                <option value="@subject.Id">@subject.Name (@subject.Class)</option>
+            }
+        </select>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-info">Add Subject</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+}

@@ -1,0 +1,39 @@
+﻿@model StudentTeacherSubject.Models.Subject
+
+@{
+    ViewData["Title"] = "Edit Subject";
+}
+
+<h1>Edit Subject</h1>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Class" class="control-label"></label>
+        <input asp-for="Class" class="form-control" />
+        <span asp-validation-for="Class" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="Languages">Languages (comma separated)</label>
+        <input type="text" id="Languages" name="languages" class="form-control" value="@string.Join(", ", Model.Languages.Select(l => l.Name))" />
+    </div>
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

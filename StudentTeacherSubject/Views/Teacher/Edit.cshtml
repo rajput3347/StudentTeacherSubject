@@ -1,0 +1,50 @@
+﻿@model StudentTeacherSubject.Models.Teacher
+
+@{
+    ViewData["Title"] = "Edit Teacher";
+}
+
+<h1>Edit Teacher</h1>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Age" class="control-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="Sex" class="control-label"></label>
+        <input asp-for="Sex" class="form-control" />
+        <span asp-validation-for="Sex" class="text-danger"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="ImageFile" class="control-label">Image</label>
+        <input type="file" asp-for="ImagePath" class="form-control" name="imageFile" />
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <img src="~/images/teachers/@Model.ImagePath" alt="@Model.Name" style="width:100px;" />
+        }
+    </div>
+    <br />
+  
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
